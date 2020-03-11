@@ -5,40 +5,34 @@ import android.os.Parcelable;
 
 public class Answer implements Parcelable  {
     private  int media;
-    private  String answer1;
-    private  String answer2;
-    private  String answer3;
+    private String question;
+    private  String rightAnswer;
+    private  String falseAnswer1;
+    private  String falseAnswer2;
 
-    public Answer(int media, String answer1, String answer2, String answer3) {
+    public Answer(int media, String question, String rightAnswer, String falseAnswer1, String falseAnswer2) {
         this.media = media;
-        this.answer1 = answer1;
-        this.answer2 = answer2;
-        this.answer3 = answer3;
-    }
-
-    @Override
-    public String toString() {
-        return "Answer{" +
-                "media=" + media +
-                ", answer1='" + answer1 + '\'' +
-                ", answer2='" + answer2 + '\'' +
-                ", answer3='" + answer3 + '\'' +
-                '}';
+        this.question = question;
+        this.rightAnswer = rightAnswer;
+        this.falseAnswer1 = falseAnswer1;
+        this.falseAnswer2 = falseAnswer2;
     }
 
     protected Answer(Parcel in) {
         media = in.readInt();
-        answer1 = in.readString();
-        answer2 = in.readString();
-        answer3 = in.readString();
+        question = in.readString();
+        rightAnswer = in.readString();
+        falseAnswer1 = in.readString();
+        falseAnswer2 = in.readString();
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(media);
-        dest.writeString(answer1);
-        dest.writeString(answer2);
-        dest.writeString(answer3);
+        dest.writeString(question);
+        dest.writeString(rightAnswer);
+        dest.writeString(falseAnswer1);
+        dest.writeString(falseAnswer2);
     }
 
     @Override
@@ -58,5 +52,54 @@ public class Answer implements Parcelable  {
         }
     };
 
+    @Override
+    public String toString() {
+        return "Answer{" +
+                "media=" + media +
+                ", question='" + question + '\'' +
+                ", rightAnswer='" + rightAnswer + '\'' +
+                ", falseAnswer1='" + falseAnswer1 + '\'' +
+                ", falseAnswer2='" + falseAnswer2 + '\'' +
+                '}';
+    }
 
+    public int getMedia() {
+        return media;
+    }
+
+    public void setMedia(int media) {
+        this.media = media;
+    }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
+    public String getRightAnswer() {
+        return rightAnswer;
+    }
+
+    public void setRightAnswer(String rightAnswer) {
+        this.rightAnswer = rightAnswer;
+    }
+
+    public String getFalseAnswer1() {
+        return falseAnswer1;
+    }
+
+    public void setFalseAnswer1(String falseAnswer1) {
+        this.falseAnswer1 = falseAnswer1;
+    }
+
+    public String getFalseAnswer2() {
+        return falseAnswer2;
+    }
+
+    public void setFalseAnswer2(String falseAnswer2) {
+        this.falseAnswer2 = falseAnswer2;
+    }
 }

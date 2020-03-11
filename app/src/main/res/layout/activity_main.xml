@@ -24,8 +24,10 @@
         android:id="@+id/filmImageView"
         android:layout_width="wrap_content"
         android:layout_height="200dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="68dp"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/questionTextView"
         app:srcCompat="@drawable/poudlard" />
@@ -77,5 +79,16 @@
         app:layout_constraintEnd_toEndOf="@+id/validateButton"
         app:layout_constraintStart_toStartOf="@+id/validateButton"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:scaleType="centerInside"
+        android:visibility="visible"
+        app:srcCompat="@drawable/poudlard"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="154dp"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

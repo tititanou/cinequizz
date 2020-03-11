@@ -7,43 +7,66 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/questionTextView"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="56dp"
         android:text="De quel film est extrait ce média?"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/filmImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/questionTextView"
+        app:srcCompat="@drawable/poudlard" />
+
     <RadioGroup
-        android:layout_width="106dp"
-        android:layout_height="172dp"
-        tools:layout_editor_absoluteX="152dp"
-        tools:layout_editor_absoluteY="178dp" >
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filmImageView">
 
         <RadioButton
-            android:id="@+id/radioButton"
+            android:id="@+id/radioButtonA"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="64dp" />
+            android:text="La Belle et Bête" />
 
         <RadioButton
-            android:id="@+id/radioButton2"
-            android:layout_width="wrap_content"
+            android:id="@+id/radioButtonB"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="RadioButton" />
+            android:text="Harry Potter" />
 
         <RadioButton
-            android:id="@+id/radioButton3"
-            android:layout_width="wrap_content"
+            android:id="@+id/radioButtonC"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="RadioButton" />
+            android:text="Robin des Bois" />
+
     </RadioGroup>
+
+    <Button
+        android:id="@+id/validateButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Valider la réponse"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -20,14 +20,23 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final int STATE_INIT = 1;
+    private static final int STATE_VALIDATED = 2;
     private Button validateButton;
     private TextView msgTextView;
     private TextView question;
-    Answer answer = new Answer (R.drawable.poudlard,"image", "De quel film est tirée cette image ?","Harry Potter", "robinonekenoby", "tania");
-    Answer answer2 = new Answer(R.raw.polish_oss,"audio", "De quel film est tiré cet extrait audio?","OSS 117", "Le père noël est une ordure","Need for speed");
+    private boolean nextQuestion = true;
+
+    private int state = STATE_INIT;
+
+    Answer answer = new Answer(R.drawable.poudlard, "image", "De quel film est tirée cette image ?", "Harry Potter", "robinonekenoby", "tania");
+    Answer answer2 = new Answer(R.raw.polish_oss, "audio", "De quel film est tiré cet extrait audio?", "OSS 117", "Le père noël est une ordure", "Need for speed");
 
 
+// met en place une liste de questions
 
+// un compteur
+// une fonction qui incrémente ce compteur et chnage le texte du bouton
 
 
     @Override
@@ -64,41 +73,50 @@ public class MainActivity extends AppCompatActivity {
         // creation des questions/reponses
         question.setText(answer.getQuestion());
         List<String> answered = init(answer);
-        final RadioGroup radioGroup = (RadioGroup)findViewById(R.id.radioGroup);
+        final RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
         for (int i = 0; i < radioGroup.getChildCount(); i++) {
-            ((RadioButton)radioGroup.getChildAt(i)).setText(String.valueOf(answered.get(i)));
+            ((RadioButton) radioGroup.getChildAt(i)).setText(String.valueOf(answered.get(i)));
         }
 
         Log.i("MainActivity", "onCreate: ");
-        
+
         validateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              int id = radioGroup.getCheckedRadioButtonId();
-             RadioButton radioButton = findViewById(id);
-            CharSequence radioAnswer = radioButton.getText();
-             checkAnswer(radioAnswer);
+                if (state == STATE_INIT) {
+                    int id = radioGroup.getCheckedRadioButtonId();
+                    RadioButton radioButton = findViewById(id);
+                    CharSequence radioAnswer = radioButton.getText();
+                    checkAnswer(radioAnswer);
+                    validateButton.setText("Question suivante");
+                    state = STATE_VALIDATED;
+                }
+                else if (state == STATE_VALIDATED) {
+                    validateButton.setText("Nouvel écran");
+
+                }
             }
         });
     }
 
+
     /**
      * grows image in other activity
      */
-    private void imageZoom(){
-        final Intent intent = new Intent(this,ZoomActivity.class);
-        intent.putExtra("image",answer);
+    private void imageZoom() {
+        final Intent intent = new Intent(this, ZoomActivity.class);
+        intent.putExtra("image", answer);
         startActivity(intent);
     }
 
     /**
      * if audio media shows only button play else shows only image media
      */
-    private void mediaTest(){
-        if(answer.getMediaType().equals("audio")){
+    private void mediaTest() {
+        if (answer.getMediaType().equals("audio")) {
             findViewById(R.id.filmImageView).setVisibility(View.INVISIBLE);
             findViewById(R.id.buttonPlayer).setVisibility(View.VISIBLE);
-        }else{
+        } else {
             findViewById(R.id.filmImageView).setVisibility(View.VISIBLE);
             findViewById(R.id.buttonPlayer).setVisibility(View.INVISIBLE);
         }
@@ -115,25 +133,31 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * This function checks the answer.
+     *
      * @param answered type : CharSequence. From radioButton.getText.
-     * return nothing. but display a message and swap the button 'validate' to 'question suivante'.
+     *                 return nothing. but display a message and swap the button 'validate' to 'question suivante'.
      */
 
     private void checkAnswer(CharSequence answered) {
-        validateButton.setText("Question suivante");
         if (answered.equals(answer.getRightAnswer())) {
             msgTextView.setText("Bonne réponse !");
         } else {
-            msgTextView.setText("La bonne réponse était \""+answer.getRightAnswer()+"\".");
+            msgTextView.setText("La bonne réponse était \"" + answer.getRightAnswer() + "\".");
         }
+    }
+
+    private void nextQuestion() {
+        validateButton.setText("Question suivante");
+
     }
 
 
     /**
      * This function initialize the game
+     *
      * @return a list of answers
      */
-    public List<String> init (Answer answer){
+    public List<String> init(Answer answer) {
         // on met les réponses dans un tab
         ArrayList<String> answered = new ArrayList<String>();
         answered.add(answer.getRightAnswer());
@@ -142,7 +166,6 @@ public class MainActivity extends AppCompatActivity {
         Collections.shuffle(answered);
         return answered;
     }
-
 
 
 }

@@ -2,10 +2,13 @@ package com.tania.cinequizz;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -20,6 +23,12 @@ public class MainActivity extends AppCompatActivity {
     private Button validateButton;
     private TextView msgTextView;
     private TextView question;
+    Answer answer = new Answer (R.drawable.poudlard,"image", "De quel film est tirée cette image ?","Harry Potter", "robinonekenoby", "tania");
+    Answer answer2 = new Answer(R.raw.polish_oss,"audio", "De quel film est tiré cet extrait audio?","OSS 117", "Le père noël est une ordure","Need for speed");
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +41,25 @@ public class MainActivity extends AppCompatActivity {
         validateButton = findViewById(R.id.validateButton);
         question = findViewById(R.id.questionTextView);
 
-        Answer answer = new Answer (R.drawable.poudlard, "De quel film est tirée cette image ?","Harry Potter", "robinonekenoby", "tania");
+        mediaTest();
+
+        Button buttonPlayer = findViewById(R.id.buttonPlayer);
+        buttonPlayer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                playMedia();
+
+            }
+        });
+
+        ImageView filmImageView = findViewById(R.id.filmImageView);
+        filmImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imageZoom();
+
+            }
+        });
 
         // creation des questions/reponses
         question.setText(answer.getQuestion());
@@ -56,6 +83,37 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
+     * grows image in other activity
+     */
+    private void imageZoom(){
+        final Intent intent = new Intent(this,ZoomActivity.class);
+        intent.putExtra("image",answer);
+        startActivity(intent);
+    }
+
+    /**
+     * if audio media shows only button play else shows only image media
+     */
+    private void mediaTest(){
+        if(answer.getMediaType().equals("audio")){
+            findViewById(R.id.filmImageView).setVisibility(View.INVISIBLE);
+            findViewById(R.id.buttonPlayer).setVisibility(View.VISIBLE);
+        }else{
+            findViewById(R.id.filmImageView).setVisibility(View.VISIBLE);
+            findViewById(R.id.buttonPlayer).setVisibility(View.INVISIBLE);
+        }
+
+    }
+
+    /**
+     * This function play the media in raw
+     */
+    private void playMedia() {
+        MediaPlayer mp = MediaPlayer.create(this, R.raw.polish_oss);
+        mp.start();
+    }
+
+    /**
      * This function checks the answer.
      * @param answered type : CharSequence. From radioButton.getText.
      * return nothing. but display a message and swap the button 'validate' to 'question suivante'.
@@ -63,10 +121,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void checkAnswer(CharSequence answered) {
         validateButton.setText("Question suivante");
-        if (answered.equals("Harry Potter")) {
+        if (answered.equals(answer.getRightAnswer())) {
             msgTextView.setText("Bonne réponse !");
         } else {
-            msgTextView.setText("La bonne réponse était \"Harry Potter\".");
+            msgTextView.setText("La bonne réponse était \""+answer.getRightAnswer()+"\".");
         }
     }
 

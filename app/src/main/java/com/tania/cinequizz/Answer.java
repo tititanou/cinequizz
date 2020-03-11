@@ -3,15 +3,17 @@ package com.tania.cinequizz;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Answer implements Parcelable  {
-    private  int media;
+public class Answer implements Parcelable {
+    private int media;
+    private String mediaType;
     private String question;
-    private  String rightAnswer;
-    private  String falseAnswer1;
-    private  String falseAnswer2;
+    private String rightAnswer;
+    private String falseAnswer1;
+    private String falseAnswer2;
 
-    public Answer(int media, String question, String rightAnswer, String falseAnswer1, String falseAnswer2) {
+    public Answer(int media, String mediaType, String question, String rightAnswer, String falseAnswer1, String falseAnswer2) {
         this.media = media;
+        this.mediaType = mediaType;
         this.question = question;
         this.rightAnswer = rightAnswer;
         this.falseAnswer1 = falseAnswer1;
@@ -20,6 +22,7 @@ public class Answer implements Parcelable  {
 
     protected Answer(Parcel in) {
         media = in.readInt();
+        mediaType = in.readString();
         question = in.readString();
         rightAnswer = in.readString();
         falseAnswer1 = in.readString();
@@ -29,6 +32,7 @@ public class Answer implements Parcelable  {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(media);
+        dest.writeString(mediaType);
         dest.writeString(question);
         dest.writeString(rightAnswer);
         dest.writeString(falseAnswer1);
@@ -52,54 +56,27 @@ public class Answer implements Parcelable  {
         }
     };
 
-    @Override
-    public String toString() {
-        return "Answer{" +
-                "media=" + media +
-                ", question='" + question + '\'' +
-                ", rightAnswer='" + rightAnswer + '\'' +
-                ", falseAnswer1='" + falseAnswer1 + '\'' +
-                ", falseAnswer2='" + falseAnswer2 + '\'' +
-                '}';
-    }
-
     public int getMedia() {
         return media;
     }
 
-    public void setMedia(int media) {
-        this.media = media;
+    public String getMediaType() {
+        return mediaType;
     }
 
     public String getQuestion() {
         return question;
     }
 
-    public void setQuestion(String question) {
-        this.question = question;
-    }
-
     public String getRightAnswer() {
         return rightAnswer;
-    }
-
-    public void setRightAnswer(String rightAnswer) {
-        this.rightAnswer = rightAnswer;
     }
 
     public String getFalseAnswer1() {
         return falseAnswer1;
     }
 
-    public void setFalseAnswer1(String falseAnswer1) {
-        this.falseAnswer1 = falseAnswer1;
-    }
-
     public String getFalseAnswer2() {
         return falseAnswer2;
-    }
-
-    public void setFalseAnswer2(String falseAnswer2) {
-        this.falseAnswer2 = falseAnswer2;
     }
 }

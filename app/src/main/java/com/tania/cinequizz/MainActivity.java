@@ -123,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
                     TextView tv=findViewById(R.id.textView);
                     tv.setVisibility(View.INVISIBLE);
                     index= index+1;
+                    state = STATE_INIT;
                     final Intent intendo=new Intent(MainActivity.this, MainActivity.class);
                     intendo.putExtra("state",state);
                     intendo.putExtra("index", index);

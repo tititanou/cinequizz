@@ -16,7 +16,7 @@ public class AboutInfo implements Parcelable {
         return   nameApp +
                 " est développée par une équipe de choc composé d'un grand écrivain " + member1 +
                 ", d'un membre de la mafia martiniquaise " + member2 +
-                ", d'un groos NOOB sur League of legends " + member3 +
+                ", d'un gros NOOB sur League of legends " + member3 +
                 " et du menuisier de l'extrême " + member4 +
                 ", version de l'APP '" + version + '\'';
     }

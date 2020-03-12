@@ -17,7 +17,7 @@ import java.util.Collections;
 import java.util.List;
 
 
-public class HomeActivity extends AppCompatActivity implements Parcelable {
+public class HomeActivity extends AppCompatActivity  {
     ArrayList<Answer> quizz= new ArrayList<>();
 
     Answer answer1= new Answer(R.drawable.poudlard, "image", "De quel film est tirée cette image ?", "Harry Potter", "robinonekenoby", "tania");
@@ -45,31 +45,7 @@ public class HomeActivity extends AppCompatActivity implements Parcelable {
     private static final int STATE_INIT=1;
 
 
-    protected HomeActivity(Parcel in) {
-        quizz = in.createTypedArrayList(Answer.CREATOR);
-    }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeTypedList(quizz);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    public static final Creator<HomeActivity> CREATOR = new Creator<HomeActivity>() {
-        @Override
-        public HomeActivity createFromParcel(Parcel in) {
-            return new HomeActivity(in);
-        }
-
-        @Override
-        public HomeActivity[] newArray(int size) {
-            return new HomeActivity[size];
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,17 +77,17 @@ public class HomeActivity extends AppCompatActivity implements Parcelable {
          * initilization of the index and the score, shuffling of our questions list
          */
         initialization(quizz);
-        Intent intent = new Intent(this,MainActivity.class);
+        final Intent intent = new Intent(this,MainActivity.class);
         intent.putExtra("quizz",quizz);
         intent.putExtra("state",state);
         intent.putExtra("index",index);
         TextView hV = findViewById(R.id.HomeView);
         hV.setText("CINE QUIZ");
         TextView hv = findViewById(R.id.HomeView);
-        /*Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/cinema_st.ttf");
-        hv.setTypeface(custom_font);*/
+        Typeface custom_font = Typeface.createFromAsset(getAssets(),"fonts/cinema_st.ttf");
+        hv.setTypeface(custom_font);
         goToQuiz(intent);
-        goToAbout(intent);
+        goToAbout();
 
     }
 
@@ -125,12 +101,13 @@ public class HomeActivity extends AppCompatActivity implements Parcelable {
         });
     }
 
-    private void goToAbout(final Intent intent) {
+    private void goToAbout() {
+       final Intent intent2= new Intent(this,AboutActivity.class);
         Button aboutBtn = findViewById(R.id.AboutBtn);
         aboutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(intent);
+                startActivity(intent2);
             }
         });
     }

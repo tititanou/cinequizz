@@ -17,7 +17,7 @@ public class AboutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
         String versionName = BuildConfig.VERSION_NAME;
-        AboutInfo aboutInfo = new AboutInfo("Ciné quiz","Boris","Tania","Antoine","Laurent",versionName);
+        AboutInfo aboutInfo = new AboutInfo("Ciné quiz","M Boris Cassel","Tania","Antoine","Laurent",versionName);
         TextView infoView = findViewById(R.id.infoView);
         infoView.setText(aboutInfo.toString());
         TextView versionView = findViewById(R.id.versionView);

@@ -13,12 +13,11 @@ public class AboutInfo implements Parcelable {
 
     @Override
     public String toString() {
-        return "AboutInfo{" +
-                "nameApp='" + nameApp + '\'' +
-                ", member1='" + member1 + '\'' +
-                ", member2='" + member2 + '\'' +
-                ", member3='" + member3 + '\'' +
-                ", member4='" + member4 + '\'' +
+        return   nameApp + '\'' +
+                ", Cette application est développée par une équipe de choc : " + member1 + '\'' +
+                "," + member2 + '\'' +
+                "," + member3 + '\'' +
+                "," + member4 + '\'' +
                 ", version='" + version + '\'' +
                 '}';
     }

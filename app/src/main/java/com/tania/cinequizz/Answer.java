@@ -3,6 +3,7 @@ package com.tania.cinequizz;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+
 public class Answer implements Parcelable {
     private int media;
     private String mediaType;

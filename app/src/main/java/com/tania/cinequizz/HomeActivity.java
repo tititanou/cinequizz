@@ -77,6 +77,7 @@ public class HomeActivity extends AppCompatActivity  {
          * initilization of the index and the score, shuffling of our questions list
          */
         initialization(quizz);
+        shuffleList(quizz);
         final Intent intent = new Intent(this,MainActivity.class);
         intent.putExtra("quizz",quizz);
         intent.putExtra("state",state);
@@ -113,14 +114,14 @@ public class HomeActivity extends AppCompatActivity  {
     }
 
 
-    public List<Answer> shuffleList(List<Answer> listing){
+    public ArrayList<Answer> shuffleList(ArrayList<Answer> listing){
         Collections.shuffle(listing);
         return listing;
 
     }
 
     public void initialization (List<Answer> myList){
-        List<Answer> myListShuffled = shuffleList(myList);
+        //List<Answer> myListShuffled = shuffleList(myList);
         index = 0;
         state = STATE_INIT;
         score =0;

@@ -19,6 +19,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final int STATE_START=0;
+
     private static final int STATE_INIT = 1;
     private static final int STATE_VALIDATED = 2;
     private Button validateButton;
@@ -27,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
     private boolean nextQuestion = true;
     private int index;
     private int score;
-
-    private int state = STATE_INIT;
+    private int state = STATE_START;
+    ArrayList<Answer> quizz= new ArrayList<>();
 
     Answer answer1= new Answer(R.drawable.poudlard, "image", "De quel film est tirée cette image ?", "Harry Potter", "robinonekenoby", "tania");
     Answer answer2 = new Answer(R.raw.polish_oss, "audio", "De quel film est tiré cet extrait audio?", "OSS 117", "Le père noël est une ordure", "Need for speed");
@@ -53,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,38 +62,44 @@ public class MainActivity extends AppCompatActivity {
 
 
         setTitle("CineQuizz");
-
-        /**
-         * creation of our questions list
-         */
-        ArrayList<Answer> quizz = new ArrayList<>();
-        quizz.add(answer1);
-        quizz.add(answer2);
-        quizz.add(answer3);
-        quizz.add(answer4);
-        quizz.add(answer5);
-        quizz.add(answer6);
-        quizz.add(answer7);
-        quizz.add(answer8);
-        quizz.add(answer9);
-        quizz.add(answer10);
-        quizz.add(answer11);
-        quizz.add(answer12);
-        quizz.add(answer13);
-        quizz.add(answer14);
-        quizz.add(answer15);
-        quizz.add(answer16);
-        quizz.add(answer17);
-        quizz.add(answer18);
-        quizz.add(answer19);
+        this.index=getIntent().getIntExtra("index",0);
+        //quizz= getIntent().getParcelableArrayListExtra("list");
 
 
-        /**
-         * initilization of the index and the score, shuffling of our questions list
-         */
-        initialization(quizz);
+
+        if (state==STATE_START) {
+            TextView verif = findViewById(R.id.textView);
+            verif.setText("l'index"+index);
+            /**
+             * creation of our questions list
+             */
+            quizz.add(answer1);
+            quizz.add(answer2);
+            quizz.add(answer3);
+            quizz.add(answer4);
+            quizz.add(answer5);
+            quizz.add(answer6);
+            quizz.add(answer7);
+            quizz.add(answer8);
+            quizz.add(answer9);
+            quizz.add(answer10);
+            quizz.add(answer11);
+            quizz.add(answer12);
+            quizz.add(answer13);
+            quizz.add(answer14);
+            quizz.add(answer15);
+            quizz.add(answer16);
+            quizz.add(answer17);
+            quizz.add(answer18);
+            quizz.add(answer19);
 
 
+            /**
+             * initilization of the index and the score, shuffling of our questions list
+             */
+            initialization(quizz);
+            state=STATE_INIT;
+        }
          msgTextView = findViewById(R.id.msgTextView);
          validateButton = findViewById(R.id.validateButton);
          question = findViewById(R.id.questionTextView);
@@ -100,7 +107,8 @@ public class MainActivity extends AppCompatActivity {
         /**
          *  we choose an object (an answer) in our list
         */
-        final Answer answerChoosed = quizz.get(index);
+
+        final Answer answerChoosed=quizz.get(index);
 
 
         /**
@@ -151,15 +159,26 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (state == STATE_INIT) {
+                    TextView tv=findViewById(R.id.textView);
+                    tv.setVisibility(View.INVISIBLE);
                     int id = radioGroup.getCheckedRadioButtonId();
                     RadioButton radioButton = findViewById(id);
                     CharSequence radioAnswer = radioButton.getText();
                     checkAnswer(radioAnswer, answerChoosed);
                     validateButton.setText("Question suivante");
                     state = STATE_VALIDATED;
+
+
                 }
                 else if (state == STATE_VALIDATED) {
-                    validateButton.setText("Nouvel écran");
+                    TextView tv=findViewById(R.id.textView);
+                    tv.setVisibility(View.INVISIBLE);
+                    index= index+1;
+                    final Intent intendo=new Intent(MainActivity.this, MainActivity.class);
+                    intendo.putExtra("state",state);
+                    intendo.putExtra("index", index);
+                    intendo.putExtra("list", quizz);
+                    startActivity(intendo);
 
                 }
             }

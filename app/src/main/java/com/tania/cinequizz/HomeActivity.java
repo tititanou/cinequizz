@@ -39,6 +39,21 @@ public class HomeActivity extends AppCompatActivity  {
     Answer answer17 = new Answer(R.drawable.seigneur_des_anneaux,"intermédiaire","image","De quel film est tirée cette image ?","Le Seigneur des Anneaux","Le Hobbit","Harry Potter");
     Answer answer18= new Answer(R.raw.cite_peur,"difficile","audio", "De quel film est tiré ce son ?", "La cité de la peur", "Camping", "Sans peur et sans reproche");
     Answer answer19= new Answer(R.raw.lebowski,"facile","audio","De quel film est tiré ce son ?", "The Big Lebowski", "Rain man", "Narnia");
+    Answer answer20=new Answer(R.raw.matrix, "facile","audio","De quel film est tiré ce son ?", "Matrix", "Tron", "John Wick");
+    Answer answer21=new Answer(R.raw.parrain2,"difficile", "audio","De quel film est tiré ce son ?", "Le Parrain 2", "Scarface", "Donnie Brasco");
+    Answer answer22=new Answer(R.raw.pere_noel, "intermédiaire","audio","De quel film est tiré ce son ?", "Le père Noel est une ordure", "Les bronzés", "La beuze");
+    Answer answer23=new Answer(R.raw.rabbi_jaccob, "intermédiaire","audio","De quel film est tiré ce son ?", "Rabbi Jacob", "Les gendarmes à Saint Tropez", "Fantomas");
+    Answer answer24=new Answer(R.raw.star_wars, "facile","audio","De quel film est tiré ce son ?", "Star Wars", "Alien", "2001, l'Odyssée de l'espace");
+    Answer answer25=new Answer(R.raw.terminator,"facile", "audio","De quel film est tiré ce son ?", "Terminator", "Star Trek", "Basic Instinct");
+    Answer answer26=new Answer(R.raw.bronzes_ski_2,"facile", "audio","De quel film est tiré ce son ?", "Les bronzés font du ski", "La première étoile", "Rasta rocket");
+    Answer answer27=new Answer(R.raw.cest_arrive, "difficile","audio","De quel film est tiré ce son ?", "C'est arrivé près de chez vous", "Dikkenek", "Le boulet");
+    Answer answer28=new Answer(R.raw.la_haine,"intermédiaire", "audio","De quel film est tiré ce son ?", "La Haine", "Les misérables", "Banlieusards");
+    Answer answer29=new Answer(R.raw.peril_jeune,"difficile", "audio","De quel film est tiré ce son ?", "Le péril jeune", "L'auberge espagnole", "Le professionnel");
+    Answer answer30=new Answer(R.raw.pilote_avion,"facile", "audio","De quel film est tiré ce son ?", "Y a t il un pilote dans l'avion", "Maman, j'ai raté l'avion", "Sully");
+    Answer answer31=new Answer(R.raw.star_wars,"facile" ,"audio","De quel film est tiré ce son ?", "Star Wars", "Interstellar", "Seul sur Mars");
+    Answer answer32=new Answer(R.raw.amelie_poulain, "intermédiaire","audio","De quel film est tiré ce son ?", "La fabuleux destin d'Amélie Poulain", "Intouchables", "La Môme");
+    Answer answer33=new Answer(R.drawable.thanos, "difficile","image","qu’elle est la réplique du moment de ce fil ?","je suis inéluctable ","je suis inévitable","je suis iron man ");
+
     private int index;
     private int state;
     private int score;
@@ -73,6 +88,24 @@ public class HomeActivity extends AppCompatActivity  {
         quizz.add(answer17);
         quizz.add(answer18);
         quizz.add(answer19);
+        quizz.add(answer20);
+        quizz.add(answer21);
+        quizz.add(answer22);
+        quizz.add(answer23);
+        quizz.add(answer24);
+        quizz.add(answer25);
+        quizz.add(answer26);
+        quizz.add(answer27);
+        quizz.add(answer28);
+        quizz.add(answer29);
+        quizz.add(answer30);
+        quizz.add(answer31);
+        quizz.add(answer32);
+        quizz.add(answer33);
+
+
+
+
         /**
          * initilization of the index and the score, shuffling of our questions list
          */

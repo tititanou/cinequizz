@@ -82,6 +82,7 @@ public class HomeActivity extends AppCompatActivity  {
         intent.putExtra("quizz",quizz);
         intent.putExtra("state",state);
         intent.putExtra("index",index);
+        intent.putExtra("score", score);
         TextView hV = findViewById(R.id.HomeView);
         hV.setText("CINE QUIZ");
         TextView hv = findViewById(R.id.HomeView);

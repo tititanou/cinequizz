@@ -45,10 +45,17 @@ public class MainActivity extends AppCompatActivity {
         this.index=getIntent().getIntExtra("index",0);
         quizz= getIntent().getParcelableArrayListExtra("quizz");
         state = getIntent().getIntExtra("state",0);
-        if (state==STATE_INIT) {
-            TextView verif = findViewById(R.id.textView);
-            verif.setText("l'index"+index);
-        }
+        score = getIntent().getIntExtra("score",0);
+
+        /**
+         * we set the actual score of the game
+         */
+
+        TextView verif = findViewById(R.id.textView);
+        int questionNumber = index +1;
+        verif.setText("Question "+ questionNumber + " sur un total de " + quizz.size()+ " questions" + "\n" +"Votre score est de " + score);
+
+
          msgTextView = findViewById(R.id.msgTextView);
          validateButton = findViewById(R.id.validateButton);
          question = findViewById(R.id.questionTextView);
@@ -128,6 +135,7 @@ public class MainActivity extends AppCompatActivity {
                     intendo.putExtra("state",state);
                     intendo.putExtra("index", index);
                     intendo.putExtra("quizz", quizz);
+                    intendo.putExtra("score", score);
                     startActivity(intendo);
 
                 }
@@ -161,6 +169,7 @@ public class MainActivity extends AppCompatActivity {
     private void checkAnswer(CharSequence answered, Answer solution) {
         if (answered.equals(solution.getRightAnswer())) {
             msgTextView.setText("Bonne réponse !");
+            score = score +1;
         } else {
             msgTextView.setText("La bonne réponse était \"" + solution.getRightAnswer() + "\".");
         }

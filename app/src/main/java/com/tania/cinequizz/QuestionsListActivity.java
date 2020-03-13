@@ -41,6 +41,24 @@ public class QuestionsListActivity extends AppCompatActivity {
         quizz.add(new Answer(R.drawable.seigneur_des_anneaux,"image","De quel film est tirée cette image ?","Le Seigneur des Anneaux","Le Hobbit","Harry Potter"));
         quizz.add(new Answer(R.raw.cite_peur, "audio", "De quel film est tiré ce son ?", "La cité de la peur", "Camping", "Sans peur et sans reproche"));
         quizz.add(new Answer(R.raw.lebowski, "audio","De quel film est tiré ce son ?", "The Big Lebowski", "Rain man", "Narnia"));
+        quizz.add(new Answer(R.raw.matrix, "audio","De quel film est tiré ce son ?", "Matrix", "Tron", "John Wick"));
+        quizz.add(new Answer(R.raw.parrain2, "audio","De quel film est tiré ce son ?", "Le Parrain 2", "Scarface", "Donnie Brasco"));
+        quizz.add(new Answer(R.raw.pere_noel, "audio","De quel film est tiré ce son ?", "Le père Noel est une ordure", "Les bronzés", "La beuze"));
+        quizz.add(new Answer(R.raw.rabbi_jaccob, "audio","De quel film est tiré ce son ?", "Rabbi Jacob", "Les gendarmes à Saint Tropez", "Fantomas"));
+        quizz.add(new Answer(R.raw.star_wars, "audio","De quel film est tiré ce son ?", "Star Wars", "Alien", "2001, l'Odyssée de l'espace"));
+        quizz.add(new Answer(R.raw.terminator, "audio","De quel film est tiré ce son ?", "Terminator", "Star Trek", "Basic Instinct"));
+
+        quizz.add(new Answer(R.raw.bronzes_ski_2,
+                , "audio","De quel film est tiré ce son ?", "The Big Lebowski", "Rain man", "Narnia"));
+        quizz.add(new Answer(R.raw.lebowski, "audio","De quel film est tiré ce son ?", "The Big Lebowski", "Rain man", "Narnia"));
+        quizz.add(new Answer(R.raw.lebowski, "audio","De quel film est tiré ce son ?", "The Big Lebowski", "Rain man", "Narnia"));
+        quizz.add(new Answer(R.raw.lebowski, "audio","De quel film est tiré ce son ?", "The Big Lebowski", "Rain man", "Narnia"));
+        quizz.add(new Answer(R.raw.lebowski, "audio","De quel film est tiré ce son ?", "The Big Lebowski", "Rain man", "Narnia"));
+        quizz.add(new Answer(R.raw.lebowski, "audio","De quel film est tiré ce son ?", "The Big Lebowski", "Rain man", "Narnia"));
+        quizz.add(new Answer(R.raw.lebowski, "audio","De quel film est tiré ce son ?", "The Big Lebowski", "Rain man", "Narnia"));
+        quizz.add(new Answer(R.raw.lebowski, "audio","De quel film est tiré ce son ?", "The Big Lebowski", "Rain man", "Narnia"));
+        quizz.add(new Answer(R.raw.lebowski, "audio","De quel film est tiré ce son ?", "The Big Lebowski", "Rain man", "Narnia"));
+
 
         adapter = new AnswerAdapter(quizz);
 

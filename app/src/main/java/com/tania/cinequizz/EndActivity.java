@@ -9,9 +9,10 @@ import android.widget.TextView;
 
 public class EndActivity extends AppCompatActivity {
 
-    private int score;
-    private int quizzSize;
+    private float score;
+    private float quizzSize;
     private String level;
+
 
 
 
@@ -30,7 +31,7 @@ public class EndActivity extends AppCompatActivity {
         this.quizzSize = getIntent().getIntExtra("quizz size", 0);
         this.level = getIntent().getStringExtra("level");
 
-        float result=(float)((score/quizzSize)*100);
+        int result=(int) (((float)score/quizzSize) * 100.f);
 
         TextView resultTextView=findViewById(R.id.resultTextView);
         ImageView reussiteImageView=findViewById(R.id.reussiteImageView);

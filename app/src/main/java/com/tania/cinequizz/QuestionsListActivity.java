@@ -22,7 +22,7 @@ public class QuestionsListActivity extends AppCompatActivity {
 
         quizz = new ArrayList<>();
 
-        quizz.add(new Answer(R.drawable.thanos, "difficile","image","qu’elle est la réplique du moment de ce fil ?","je suis inéluctable ","je suis inévitable","je suis iron man "));
+        quizz.add(new Answer(R.drawable.thanos, "difficile","image","Quelle est la bonne réplique ?","Je suis inéluctable !","Je suis inévitable !","Je suis Iron Man !"));
         quizz.add(new Answer(R.drawable.poudlard,"intermédiaire", "image", "De quel film est tirée cette image ?", "Harry Potter", "robinonekenoby", "tania"));
         quizz.add(new Answer(R.drawable.avatar, "facile","image","De quel film est tirée cette image ?","Avatar","Alien","Mars Attack"));
         quizz.add(new Answer(R.drawable.belle_bete_cocteau,"difficile","image","De quel film est tirée cette image ?","La belle et la bête","Peau d'Âne", "Le Magicien D'Oz"));

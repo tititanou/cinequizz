@@ -55,7 +55,7 @@ public class HomeActivity extends AppCompatActivity  {
     Answer answer29=new Answer(R.raw.peril_jeune,"difficile", "audio","De quel film est tiré ce son ?", "Le péril jeune", "L'auberge espagnole", "Le professionnel");
     Answer answer30=new Answer(R.raw.pilote_avion,"facile", "audio","De quel film est tiré ce son ?", "Y a t il un pilote dans l'avion", "Maman, j'ai raté l'avion", "Sully");
     Answer answer32=new Answer(R.raw.amelie_poulain, "intermédiaire","audio","De quel film est tiré ce son ?", "La fabuleux destin d'Amélie Poulain", "Intouchables", "La Môme");
-    Answer answer33=new Answer(R.drawable.thanos, "difficile","image","qu’elle est la réplique du moment de ce fil ?","je suis inéluctable ","je suis inévitable","je suis iron man ");
+    Answer answer33=new Answer(R.drawable.thanos, "difficile","image","Quelle est la bonne réplique ?","Je suis inéluctable !","Je suis inévitable !","Je suis Iron Man !");
 
     private int index;
     private int state;

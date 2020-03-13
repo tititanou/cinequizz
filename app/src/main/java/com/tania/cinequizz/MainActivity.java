@@ -41,19 +41,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        setTitle("CineQuizz");
         this.index=getIntent().getIntExtra("index",0);
         quizz= getIntent().getParcelableArrayListExtra("quizz");
         state = getIntent().getIntExtra("state",0);
         score = getIntent().getIntExtra("score",0);
+        int questionNumber = index +1;
+        setTitle("CineQuizz \n" + questionNumber+ "/"+quizz.size());
 
         /**
          * we set the actual score of the game
          */
 
         TextView verif = findViewById(R.id.textView);
-        int questionNumber = index +1;
-        verif.setText("Question "+ questionNumber + " sur un total de " + quizz.size()+ " questions" + "\n" +"Votre score est de " + score);
+        verif.setText("Votre score est de " + score);
 
 
          msgTextView = findViewById(R.id.msgTextView);

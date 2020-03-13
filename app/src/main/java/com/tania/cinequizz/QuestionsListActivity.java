@@ -22,6 +22,7 @@ public class QuestionsListActivity extends AppCompatActivity {
 
         quizz = new ArrayList<>();
 
+        quizz.add(new Answer(R.drawable.thanos, "difficile","image","qu’elle est la réplique du moment de ce fil ?","je suis inéluctable ","je suis inévitable","je suis iron man "));
         quizz.add(new Answer(R.drawable.poudlard,"intermédiaire", "image", "De quel film est tirée cette image ?", "Harry Potter", "robinonekenoby", "tania"));
         quizz.add(new Answer(R.drawable.avatar, "facile","image","De quel film est tirée cette image ?","Avatar","Alien","Mars Attack"));
         quizz.add(new Answer(R.drawable.belle_bete_cocteau,"difficile","image","De quel film est tirée cette image ?","La belle et la bête","Peau d'Âne", "Le Magicien D'Oz"));
@@ -51,9 +52,8 @@ public class QuestionsListActivity extends AppCompatActivity {
         quizz.add(new Answer(R.raw.la_haine,"intermédiaire", "audio","De quel film est tiré ce son ?", "La Haine", "Les misérables", "Banlieusards"));
         quizz.add(new Answer(R.raw.peril_jeune,"difficile", "audio","De quel film est tiré ce son ?", "Le péril jeune", "L'auberge espagnole", "Le professionnel"));
         quizz.add(new Answer(R.raw.pilote_avion,"facile", "audio","De quel film est tiré ce son ?", "Y a t il un pilote dans l'avion", "Maman, j'ai raté l'avion", "Sully"));
-        quizz.add(new Answer(R.raw.star_wars,"facile" ,"audio","De quel film est tiré ce son ?", "Star Wars", "Interstellar", "Seul sur Mars"));
         quizz.add(new Answer(R.raw.amelie_poulain, "intermédiaire","audio","De quel film est tiré ce son ?", "La fabuleux destin d'Amélie Poulain", "Intouchables", "La Môme"));
-        quizz.add(new Answer(R.drawable.thanos, "difficile","image","qu’elle est la réplique du moment de ce fil ?","je suis inéluctable ","je suis inévitable","je suis iron man "));
+        quizz.add(new Answer(R.raw.polish_oss,"intermédiaire", "audio", "De quel film est tiré cet extrait audio?", "OSS 117", "Le père noël est une ordure", "Need for speed"));
 
         adapter = new AnswerAdapter(quizz);
 

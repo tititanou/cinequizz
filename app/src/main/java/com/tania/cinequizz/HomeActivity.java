@@ -54,7 +54,6 @@ public class HomeActivity extends AppCompatActivity  {
     Answer answer28=new Answer(R.raw.la_haine,"intermédiaire", "audio","De quel film est tiré ce son ?", "La Haine", "Les misérables", "Banlieusards");
     Answer answer29=new Answer(R.raw.peril_jeune,"difficile", "audio","De quel film est tiré ce son ?", "Le péril jeune", "L'auberge espagnole", "Le professionnel");
     Answer answer30=new Answer(R.raw.pilote_avion,"facile", "audio","De quel film est tiré ce son ?", "Y a t il un pilote dans l'avion", "Maman, j'ai raté l'avion", "Sully");
-    Answer answer31=new Answer(R.raw.star_wars,"facile" ,"audio","De quel film est tiré ce son ?", "Star Wars", "Interstellar", "Seul sur Mars");
     Answer answer32=new Answer(R.raw.amelie_poulain, "intermédiaire","audio","De quel film est tiré ce son ?", "La fabuleux destin d'Amélie Poulain", "Intouchables", "La Môme");
     Answer answer33=new Answer(R.drawable.thanos, "difficile","image","qu’elle est la réplique du moment de ce fil ?","je suis inéluctable ","je suis inévitable","je suis iron man ");
 
@@ -104,7 +103,6 @@ public class HomeActivity extends AppCompatActivity  {
         quizz.add(answer28);
         quizz.add(answer29);
         quizz.add(answer30);
-        quizz.add(answer31);
         quizz.add(answer32);
         quizz.add(answer33);
 

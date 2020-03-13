@@ -20,9 +20,9 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
 
-
     private static final int STATE_INIT = 1;
     private static final int STATE_VALIDATED = 2;
+    private static final int STATE_FINAL = 3;
     private Button validateButton;
     private TextView msgTextView;
     private TextView question;
@@ -30,9 +30,8 @@ public class MainActivity extends AppCompatActivity {
     private int index;
     private int score;
     private int state;
-    ArrayList<Answer> quizz= new ArrayList<>();
-
-
+    private String level;
+    ArrayList<Answer> quizz = new ArrayList<>();
 
 
     @Override
@@ -41,12 +40,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        this.index=getIntent().getIntExtra("index",0);
-        quizz= getIntent().getParcelableArrayListExtra("quizz");
-        state = getIntent().getIntExtra("state",0);
-        score = getIntent().getIntExtra("score",0);
-        int questionNumber = index +1;
-        setTitle("CineQuizz \n" + questionNumber+ "/"+quizz.size());
+        this.index = getIntent().getIntExtra("index", 0);
+        quizz = getIntent().getParcelableArrayListExtra("quizz");
+        state = getIntent().getIntExtra("state", 0);
+        score = getIntent().getIntExtra("score", 0);
+        final int questionNumber = index + 1;
+        setTitle("CineQuizz \n" + questionNumber + "/" + quizz.size());
+
 
         /**
          * we set the actual score of the game
@@ -56,15 +56,15 @@ public class MainActivity extends AppCompatActivity {
         verif.setText("Votre score est de " + score);
 
 
-         msgTextView = findViewById(R.id.msgTextView);
-         validateButton = findViewById(R.id.validateButton);
-         question = findViewById(R.id.questionTextView);
+        msgTextView = findViewById(R.id.msgTextView);
+        validateButton = findViewById(R.id.validateButton);
+        question = findViewById(R.id.questionTextView);
 
         /**
          *  we choose an object (an answer) in our list
-        */
+         */
 
-        final Answer answerChoosed=quizz.get(index);
+        final Answer answerChoosed = quizz.get(index);
 
 
         /**
@@ -76,18 +76,17 @@ public class MainActivity extends AppCompatActivity {
         /**
          * check the type of our data and set the media to the media view
          */
-        if (mediaTest(answerChoosed).equals("audio")){
-                Button buttonPlayer = findViewById(R.id.buttonPlayer);
-                buttonPlayer.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        playMedia(answerChoosed);
+        if (mediaTest(answerChoosed).equals("audio")) {
+            Button buttonPlayer = findViewById(R.id.buttonPlayer);
+            buttonPlayer.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    playMedia(answerChoosed);
 
-                    }
-                });
+                }
+            });
 
-        }
-        else if (mediaTest(answerChoosed).equals("image")){
+        } else if (mediaTest(answerChoosed).equals("image")) {
             ImageView filmImageView = findViewById(R.id.filmImageView);
             filmImageView.setImageResource(answerChoosed.getMedia());
             filmImageView.setOnClickListener(new View.OnClickListener() {
@@ -110,12 +109,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-
         validateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (state == STATE_INIT) {
-                    TextView tv=findViewById(R.id.textView);
+                    TextView tv = findViewById(R.id.textView);
                     tv.setVisibility(View.INVISIBLE);
                     int id = radioGroup.getCheckedRadioButtonId();
                     RadioButton radioButton = findViewById(id);
@@ -125,19 +123,31 @@ public class MainActivity extends AppCompatActivity {
                     state = STATE_VALIDATED;
 
 
-                }
-                else if (state == STATE_VALIDATED) {
-                    TextView tv=findViewById(R.id.textView);
-                    tv.setVisibility(View.INVISIBLE);
-                    index= index+1;
-                    state = STATE_INIT;
-                    final Intent intendo=new Intent(MainActivity.this, MainActivity.class);
-                    intendo.putExtra("state",state);
-                    intendo.putExtra("index", index);
-                    intendo.putExtra("quizz", quizz);
-                    intendo.putExtra("score", score);
-                    startActivity(intendo);
-                    finish();
+                } else if (state == STATE_VALIDATED) {
+                    if (questionNumber == quizz.size()) {
+
+
+                        level = quizz.get(index).level;
+                        Intent end = new Intent(MainActivity.this, EndActivity.class);
+                        end.putExtra("index", index);
+                        end.putExtra("quizz size", quizz.size());
+                        end.putExtra("score", score);
+                        end.putExtra("level", level);
+                        startActivity(end);
+                        finish();
+                    } else {
+                        TextView tv = findViewById(R.id.textView);
+                        tv.setVisibility(View.INVISIBLE);
+                        index = index + 1;
+                        state = STATE_INIT;
+                        final Intent intendo = new Intent(MainActivity.this, MainActivity.class);
+                        intendo.putExtra("state", state);
+                        intendo.putExtra("index", index);
+                        intendo.putExtra("quizz", quizz);
+                        intendo.putExtra("score", score);
+                        startActivity(intendo);
+                        finish();
+                    }
 
                 }
             }
@@ -156,10 +166,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-
-
-
     /**
      * This function checks the answer.
      *
@@ -170,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
     private void checkAnswer(CharSequence answered, Answer solution) {
         if (answered.equals(solution.getRightAnswer())) {
             msgTextView.setText("Bonne réponse !");
-            score = score +1;
+            score = score + 1;
         } else {
             msgTextView.setText("La bonne réponse était \"" + solution.getRightAnswer() + "\".");
         }
@@ -198,12 +204,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-
-
-
-
-
     /**
      * if audio media shows only button play else shows only image media
      */
@@ -219,7 +219,6 @@ public class MainActivity extends AppCompatActivity {
             return "image";
         }
     }
-
 
 
     /**

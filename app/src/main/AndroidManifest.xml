@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/cine_icone_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".QuestionsListActivity"></activity>
+        <activity android:name=".EndActivity"></activity>
+        <activity android:name=".QuestionsListActivity" />
         <activity android:name=".ZoomActivity" />
         <activity android:name=".HomeActivity">
             <intent-filter>

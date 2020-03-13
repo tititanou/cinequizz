@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -113,6 +114,11 @@ public class MainActivity extends AppCompatActivity {
                     TextView tv = findViewById(R.id.textView);
                     tv.setVisibility(View.INVISIBLE);
                     int id = radioGroup.getCheckedRadioButtonId();
+                    if (id==-1) {
+                        Toast.makeText(MainActivity.this, "Veuillez selectionner une réponse!", Toast.LENGTH_SHORT)
+                                .show();
+                        return;
+                    }
                     RadioButton radioButton = findViewById(id);
                     CharSequence radioAnswer = radioButton.getText();
                     checkAnswer(radioAnswer, answerChoosed);

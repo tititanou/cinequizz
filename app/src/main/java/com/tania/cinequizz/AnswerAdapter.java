@@ -1,5 +1,8 @@
 package com.tania.cinequizz;
 
+import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,9 +13,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class AnswerAdapter extends RecyclerView.Adapter<AnswerAdapter.ViewHolder> {
+public class AnswerAdapter extends RecyclerView.Adapter<AnswerAdapter.ViewHolder> implements View.OnClickListener {
 
 private List<Answer> answers;
 
@@ -41,11 +45,30 @@ private List<Answer> answers;
         }
         holder.question.setText(answer.question);
         holder.allAnswer.setText("-"+answer.rightAnswer +"\n-"+answer.falseAnswer1+"\n-"+answer.falseAnswer2);
+
+        holder.itemView.setTag(answer);
+
+        holder.itemView.setOnClickListener(this);
+
     }
 
     @Override
     public int getItemCount() {
         return answers.size();
+    }
+
+    @Override
+    public void onClick(View v) {
+        ArrayList<Answer> list;
+        Answer a = (Answer) v.getTag();
+        list= new ArrayList<>();
+        list.add(a);
+        Log.i("AnswerAdapter", "onClick: " + a.media);
+
+        Context context = v.getContext();
+        Intent intent = new Intent(context,MainActivity.class);
+        intent.putExtra("quizz",list);
+        context.startActivity(intent);
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{

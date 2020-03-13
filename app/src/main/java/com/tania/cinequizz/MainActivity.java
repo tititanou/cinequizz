@@ -22,14 +22,12 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int STATE_INIT = 1;
     private static final int STATE_VALIDATED = 2;
-    private static final int STATE_FINAL = 3;
     private Button validateButton;
     private TextView msgTextView;
     private TextView question;
-    private boolean nextQuestion = true;
     private int index;
     private int score;
-    private int state;
+    private int state=STATE_INIT;
     private String level;
     ArrayList<Answer> quizz = new ArrayList<>();
 
@@ -42,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
 
         this.index = getIntent().getIntExtra("index", 0);
         quizz = getIntent().getParcelableArrayListExtra("quizz");
-        state = getIntent().getIntExtra("state", 0);
         score = getIntent().getIntExtra("score", 0);
         final int questionNumber = index + 1;
         setTitle("CineQuizz \n" + questionNumber + "/" + quizz.size());
@@ -119,14 +116,16 @@ public class MainActivity extends AppCompatActivity {
                     RadioButton radioButton = findViewById(id);
                     CharSequence radioAnswer = radioButton.getText();
                     checkAnswer(radioAnswer, answerChoosed);
+                    if (questionNumber == quizz.size()) {
+                        validateButton.setText("Afficher les résultats");
+                    }else {
                     validateButton.setText("Question suivante");
+                    }
                     state = STATE_VALIDATED;
 
 
                 } else if (state == STATE_VALIDATED) {
                     if (questionNumber == quizz.size()) {
-
-
                         level = quizz.get(index).level;
                         Intent end = new Intent(MainActivity.this, EndActivity.class);
                         end.putExtra("index", index);

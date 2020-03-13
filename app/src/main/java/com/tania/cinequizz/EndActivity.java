@@ -29,7 +29,7 @@ public class EndActivity extends AppCompatActivity {
         this.quizzSize = getIntent().getIntExtra("quizz size", 0);
         this.level = getIntent().getStringExtra("level");
 
-        float result=(score/quizzSize)*100;
+        float result=(float)((score/quizzSize)*100);
 
         TextView resultTextView=findViewById(R.id.resultTextView);
         ImageView reussiteImageView=findViewById(R.id.reussiteImageView);

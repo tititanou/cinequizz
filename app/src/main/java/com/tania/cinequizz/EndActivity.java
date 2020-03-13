@@ -2,15 +2,17 @@ package com.tania.cinequizz;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 
 public class EndActivity extends AppCompatActivity {
 
-    private float score;
-    private float quizzSize;
+    private int score;
+    private int quizzSize;
     private String level;
 
 
@@ -50,7 +52,18 @@ public class EndActivity extends AppCompatActivity {
         TextView scoreTextView=findViewById(R.id.scoreTextView);
         scoreTextView.setText(score+"/"+quizzSize);
 
+        ImageView homeButton = findViewById(R.id.homeButton);
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToHome();
+            }
+        });
 
+    }
+    private void goToHome() {
+        final Intent intent = new Intent(EndActivity.this,HomeActivity.class);
+        startActivity(intent);
 
     }
 }

@@ -1,12 +1,15 @@
 package com.tania.cinequizz;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -19,9 +22,9 @@ import java.util.List;
 
 public class HomeActivity extends AppCompatActivity  {
     ArrayList<Answer> quizz= new ArrayList<>();
+    ArrayList<Answer> gameList= new ArrayList<>();
 
     Answer answer1= new Answer(R.drawable.poudlard,"intermédiaire", "image", "De quel film est tirée cette image ?", "Harry Potter", "robinonekenoby", "tania");
-    Answer answer2 = new Answer(R.raw.polish_oss,"intermédiaire", "audio", "De quel film est tiré cet extrait audio?", "OSS 117", "Le père noël est une ordure", "Need for speed");
     Answer answer3 = new Answer(R.drawable.avatar,"facile", "image","De quel film est tirée cette image ?","Avatar","Alien","Mars Attack");
     Answer answer4 = new Answer(R.drawable.belle_bete_cocteau,"difficile","image","De quel film est tirée cette image ?","La belle et la bête","Peau d'Âne", "Le Magicien D'Oz");
     Answer answer5 = new Answer(R.drawable.bridget_jones,"intermédiaire","image","De quel film est tirée cette image ?","Le Journal de Bridget Jones", "Bye Bye Love","Retour a Cold Mountain");
@@ -39,10 +42,12 @@ public class HomeActivity extends AppCompatActivity  {
     Answer answer17 = new Answer(R.drawable.seigneur_des_anneaux,"intermédiaire","image","De quel film est tirée cette image ?","Le Seigneur des Anneaux","Le Hobbit","Harry Potter");
     Answer answer18= new Answer(R.raw.cite_peur,"difficile","audio", "De quel film est tiré ce son ?", "La cité de la peur", "Camping", "Sans peur et sans reproche");
     Answer answer19= new Answer(R.raw.lebowski,"facile","audio","De quel film est tiré ce son ?", "The Big Lebowski", "Rain man", "Narnia");
+    Answer answer2 = new Answer(R.raw.polish_oss,"intermédiaire", "audio", "De quel film est tiré cet extrait audio?", "OSS 117", "Le père noël est une ordure", "Need for speed");
     private int index;
     private int state;
     private int score;
     private static final int STATE_INIT=1;
+    private static final int DIALOG_ALERT = 10;
 
 
 
@@ -73,22 +78,20 @@ public class HomeActivity extends AppCompatActivity  {
         quizz.add(answer17);
         quizz.add(answer18);
         quizz.add(answer19);
+
+
         /**
          * initilization of the index and the score, shuffling of our questions list
          */
         initialization(quizz);
         shuffleList(quizz);
-        final Intent intent = new Intent(this,MainActivity.class);
-        intent.putExtra("quizz",quizz);
-        intent.putExtra("state",state);
-        intent.putExtra("index",index);
-        intent.putExtra("score", score);
+
         TextView hV = findViewById(R.id.HomeView);
         hV.setText("CINE QUIZ");
         TextView hv = findViewById(R.id.HomeView);
         Typeface custom_font = Typeface.createFromAsset(getAssets(),"fonts/cinema_st.ttf");
         hv.setTypeface(custom_font);
-        goToQuiz(intent);
+
         Button listButton= findViewById(R.id.listButton);
         listButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,16 +102,81 @@ public class HomeActivity extends AppCompatActivity  {
 
         goToAbout();
 
-    }
-
-    private void goToQuiz(final Intent intent) {
         Button buttonQuiz = findViewById(R.id.ButtonQuiz);
         buttonQuiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(intent);
+                showDifDialog(quizz);
             }
         });
+
+    }
+
+    private void showDifDialog(final List<Answer> list) {
+        String[] tab= new String[3];
+        tab[0]="Facile";
+        tab[1]="Intermédiaire";
+        tab[2]="Difficile";
+
+        new AlertDialog.Builder(HomeActivity.this)
+                .setSingleChoiceItems(tab, 0, null)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        dialog.dismiss();
+                        int selectedPosition = ((AlertDialog)dialog).getListView().getCheckedItemPosition();
+                        Log.i("HomeActivity", "onClick: "+selectedPosition);
+                        // Do something useful withe the position of the selected radio button
+                        goToQuiz(selectedPosition, list);
+
+
+
+                    }
+                })
+                .show();
+    }
+
+    private void goToQuiz(int selection, List<Answer> list){
+
+        switch (selection){
+            case 0:
+                for(int i=0; i<list.size(); i++){
+                    String level = list.get(i).level;
+                    if(level.equals("facile")){
+                        gameList.add(list.get(i));
+
+                    }
+                }
+                break;
+
+
+            case 1:
+                for(int i=0; i<list.size(); i++){
+                    String level = list.get(i).level;
+                    if(level.equals("intermédiaire")){
+                        gameList.add(list.get(i));
+                    }
+                }
+                break;
+
+
+            case 2:
+                for(int i=0; i<list.size(); i++){
+                    String level = list.get(i).level;
+                    if(level.equals("difficile")){
+                        gameList.add(list.get(i));
+                    }
+                }
+                break;
+        }
+
+        shuffleList(gameList);
+        final Intent intent = new Intent(HomeActivity.this, MainActivity.class);
+        intent.putExtra("quizz",gameList);
+        intent.putExtra("state",state);
+        intent.putExtra("index",index);
+        intent.putExtra("score", score);
+        startActivity(intent);
+        finish();
     }
 
     private void goToList(){

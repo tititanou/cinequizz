@@ -137,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
                     intendo.putExtra("quizz", quizz);
                     intendo.putExtra("score", score);
                     startActivity(intendo);
+                    finish();
 
                 }
             }

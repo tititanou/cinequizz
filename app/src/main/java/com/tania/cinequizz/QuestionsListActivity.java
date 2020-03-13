@@ -23,7 +23,6 @@ public class QuestionsListActivity extends AppCompatActivity {
         quizz = new ArrayList<>();
 
         quizz.add(new Answer(R.drawable.poudlard,"intermédiaire", "image", "De quel film est tirée cette image ?", "Harry Potter", "robinonekenoby", "tania"));
-        quizz.add(new Answer(R.raw.polish_oss, "intermédiaire","audio", "De quel film est tiré cet extrait audio?", "OSS 117", "Le père noël est une ordure", "Need for speed"));
         quizz.add(new Answer(R.drawable.avatar, "facile","image","De quel film est tirée cette image ?","Avatar","Alien","Mars Attack"));
         quizz.add(new Answer(R.drawable.belle_bete_cocteau,"difficile","image","De quel film est tirée cette image ?","La belle et la bête","Peau d'Âne", "Le Magicien D'Oz"));
         quizz.add(new Answer(R.drawable.bridget_jones,"intermédiaire","image","De quel film est tirée cette image ?","Le Journal de Bridget Jones", "Bye Bye Love","Retour a Cold Mountain"));
@@ -41,6 +40,7 @@ public class QuestionsListActivity extends AppCompatActivity {
         quizz.add(new Answer(R.drawable.seigneur_des_anneaux,"intermédiaire","image","De quel film est tirée cette image ?","Le Seigneur des Anneaux","Le Hobbit","Harry Potter"));
         quizz.add(new Answer(R.raw.cite_peur,"difficile","audio", "De quel film est tiré ce son ?", "La cité de la peur", "Camping", "Sans peur et sans reproche"));
         quizz.add(new Answer(R.raw.lebowski, "facile","audio","De quel film est tiré ce son ?", "The Big Lebowski", "Rain man", "Narnia"));
+        quizz.add(new Answer(R.raw.polish_oss, "intermédiaire","audio", "De quel film est tiré cet extrait audio?", "OSS 117", "Le père noël est une ordure", "Need for speed"));
 
         adapter = new AnswerAdapter(quizz);
 

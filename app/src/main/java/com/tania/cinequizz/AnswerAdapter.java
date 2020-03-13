@@ -40,7 +40,7 @@ private List<Answer> answers;
             holder.mediaI.setVisibility(View.INVISIBLE);
         }
         holder.question.setText(answer.question);
-        holder.allAnswer.setText("-"+answer.rightAnswer +"\n -"+answer.falseAnswer1+"\n-"+answer.falseAnswer2);
+        holder.allAnswer.setText("-"+answer.rightAnswer +"\n-"+answer.falseAnswer1+"\n-"+answer.falseAnswer2);
     }
 
     @Override

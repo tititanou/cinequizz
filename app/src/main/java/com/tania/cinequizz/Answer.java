@@ -6,14 +6,16 @@ import android.os.Parcelable;
 
 public class Answer implements Parcelable {
     public final int media;
+    public final String level;
     public final String mediaType;
     public final String question;
     public final String rightAnswer;
     public final String falseAnswer1;
     public final String falseAnswer2;
 
-    public Answer(int media, String mediaType, String question, String rightAnswer, String falseAnswer1, String falseAnswer2) {
+    public Answer(int media, String level, String mediaType, String question, String rightAnswer, String falseAnswer1, String falseAnswer2) {
         this.media = media;
+        this.level = level;
         this.mediaType = mediaType;
         this.question = question;
         this.rightAnswer = rightAnswer;
@@ -23,6 +25,7 @@ public class Answer implements Parcelable {
 
     protected Answer(Parcel in) {
         media = in.readInt();
+        level = in.readString();
         mediaType = in.readString();
         question = in.readString();
         rightAnswer = in.readString();
@@ -33,6 +36,7 @@ public class Answer implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(media);
+        dest.writeString(level);
         dest.writeString(mediaType);
         dest.writeString(question);
         dest.writeString(rightAnswer);
@@ -57,8 +61,25 @@ public class Answer implements Parcelable {
         }
     };
 
+    @Override
+    public String toString() {
+        return "Answer{" +
+                "media=" + media +
+                ", nivel='" + level + '\'' +
+                ", mediaType='" + mediaType + '\'' +
+                ", question='" + question + '\'' +
+                ", rightAnswer='" + rightAnswer + '\'' +
+                ", falseAnswer1='" + falseAnswer1 + '\'' +
+                ", falseAnswer2='" + falseAnswer2 + '\'' +
+                '}';
+    }
+
     public int getMedia() {
         return media;
+    }
+
+    public String getLevel() {
+        return level;
     }
 
     public String getMediaType() {

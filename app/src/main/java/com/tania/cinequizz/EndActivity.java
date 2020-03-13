@@ -39,7 +39,7 @@ public class EndActivity extends AppCompatActivity {
             reussiteImageView.setImageResource(R.drawable.congrat);
         }else{
             resultTextView.setText("Bouh!Tu n'as obtenu que "+result+"% de bonnes réponses.");
-            reussiteImageView.setImageResource(R.drawable.wasted);
+            reussiteImageView.setImageResource(R.drawable.stitch);
         }
 
 

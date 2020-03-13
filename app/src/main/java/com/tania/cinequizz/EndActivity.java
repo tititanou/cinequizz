@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+
 public class EndActivity extends AppCompatActivity {
 
     private int score;
@@ -35,8 +36,10 @@ public class EndActivity extends AppCompatActivity {
         ImageView reussiteImageView=findViewById(R.id.reussiteImageView);
         if (result>=50){
             resultTextView.setText("Bravo! Tu as obtenu "+ result +"% de bonnes réponses.");
+            reussiteImageView.setImageResource(R.drawable.congrat);
         }else{
             resultTextView.setText("Bouh!Tu n'as obtenu que "+result+"% de bonnes réponses.");
+            reussiteImageView.setImageResource(R.drawable.wasted);
         }
 
 

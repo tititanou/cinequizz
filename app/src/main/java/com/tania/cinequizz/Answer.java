@@ -5,12 +5,12 @@ import android.os.Parcelable;
 
 
 public class Answer implements Parcelable {
-    private int media;
-    private String mediaType;
-    private String question;
-    private String rightAnswer;
-    private String falseAnswer1;
-    private String falseAnswer2;
+    public final int media;
+    public final String mediaType;
+    public final String question;
+    public final String rightAnswer;
+    public final String falseAnswer1;
+    public final String falseAnswer2;
 
     public Answer(int media, String mediaType, String question, String rightAnswer, String falseAnswer1, String falseAnswer2) {
         this.media = media;

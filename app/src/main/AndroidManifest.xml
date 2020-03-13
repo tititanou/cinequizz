@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-package="com.tania.cinequizz">
+    package="com.tania.cinequizz">
 
     <application
         android:allowBackup="true"
@@ -9,8 +9,9 @@ package="com.tania.cinequizz">
         android:roundIcon="@mipmap/cine_icone_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ZoomActivity"/>
-        <activity android:name=".HomeActivity" >
+        <activity android:name=".QuestionsListActivity"></activity>
+        <activity android:name=".ZoomActivity" />
+        <activity android:name=".HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,9 +19,7 @@ package="com.tania.cinequizz">
             </intent-filter>
         </activity>
         <activity android:name=".AboutActivity" />
-        <activity android:name=".MainActivity"/>
-
+        <activity android:name=".MainActivity" />
     </application>
-
 
 </manifest>

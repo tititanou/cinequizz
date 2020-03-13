@@ -88,6 +88,14 @@ public class HomeActivity extends AppCompatActivity  {
         Typeface custom_font = Typeface.createFromAsset(getAssets(),"fonts/cinema_st.ttf");
         hv.setTypeface(custom_font);
         goToQuiz(intent);
+        Button listButton= findViewById(R.id.listButton);
+        listButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToList();
+            }
+        });
+
         goToAbout();
 
     }
@@ -100,6 +108,11 @@ public class HomeActivity extends AppCompatActivity  {
                 startActivity(intent);
             }
         });
+    }
+
+    private void goToList(){
+        final Intent intent3 = new Intent(this, QuestionsListActivity.class);
+        startActivity(intent3);
     }
 
     private void goToAbout() {
